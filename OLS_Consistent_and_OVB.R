@@ -78,3 +78,4 @@ forgraph <- data.frame(n , "beta0hat" = betahat_output[,1], "beta1hat" = betahat
 ggplot(forgraph , aes(x=n, y=beta1hat)) + geom_line(size=0.5, color="blue") +
   geom_hline(yintercept=1.5, size=2, color="red") +
   labs(x="n", y = "Beta1hat") + theme_bw()
+

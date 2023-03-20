@@ -1,0 +1,187 @@
+---
+title: 'EDS 241: Assignment 1'
+author: 'Javier Patrón'
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: false
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Question 1:
+
+Application of estimators based on the "treatment ignorability"
+assumption. The goal is to estimate the causal effect of maternal
+smoking during pregnancy on infant birth weight using the treatment
+ignorability assumptions (Lecture 6 & 7).
+
+The data are taken from the National Natality Detail Files, and the
+extract "SMOKING_EDS241.csv"' is a random sample of all births in
+Pennsylvania during 1989-1991. Each observation is a mother-infant pair.
+The key variables are:
+
+The outcome and treatment variables are:
+
+-   birthwgt = birth weight of infant in grams
+
+-   tobacco = indicator for maternal smoking
+
+The control variables are: mage (mother's age), meduc (mother's
+education), mblack (=1 if mother black), alcohol (=1 if consumed alcohol
+during pregnancy), first (=1 if first child), diabete (=1 if mother
+diabetic), anemia (=1 if mother anemic)
+
+```{r}
+library(tidyverse)
+library(stargazer)
+library(estimatr)
+library(corrplot)
+library(tidymodels)
+
+```
+
+
+```{r}
+df_smoking <- read_csv(here::here("SMOKING_EDS241.csv"))
+```
+What is the unadjusted mean difference in birth weight of infants with smoking and nonsmoking mothers? 
+
+```{r}
+mean_weight_smk_nsmk <- df_smoking |> 
+  group_by(tobacco) |> 
+  summarise(mean_weight = mean(birthwgt))
+
+round(mean_weight_smk_nsmk$mean_weight[1] - mean_weight_smk_nsmk$mean_weight[2],2 )
+```
+The unadjusted mean difference in birth weight of infants with smoking and nonsmoking mothers is 244.54 
+
+
+
+Under what assumption does this correspond to the average treatment effect of maternal smoking during pregnancy on infant birth weight? Provide some simple empirical evidence for or against this assumption.
+```{r}
+df_smoking |>
+  mutate(tobacco = case_when(tobacco == 0 ~ "Non Smoker",
+                             tobacco == 1 ~ "Smoker")) |>
+  ggplot(aes(
+    x = as.factor(tobacco),
+    y = meduc,
+    fill = tobacco
+  )) +
+  geom_boxplot(alpha = 0.7) +
+  labs(x = "Tobacco",
+       y = "Birth Weight (grams)",
+       title = "Difference between smoking and non-smoking mothers in Birth weight ")
+```
+
+
+Another way of seeing this is by the lm() function
+
+```{r}
+lm(data = smoke, birthwgt ~ tobacco)
+```
+
+Thanks to the results above with lm() we can see the same result as
+above. The "slope" tell us that the difference between weight babies
+between smokers and nonsmokers is -244.5 grams. For every "unit" which
+is YES or NO, a baby on average will be 244.5 grams lighter **omitting
+all of the other variables**.
+
+This assumption is under the fact that the 244.5 grams is the decrease
+on weight baby in case the mother smokes on pregnancy. But is is **not
+the correct assumption**. There are other factors that can have a
+significant effect on the birth weight, as you can see in this
+correlation matrix
+
+```{r, echo = FALSE}
+
+# Obtain correlation matrix
+matrix <- cor(smoke)
+
+# Make a correlation plot between the variables
+corrplot(matrix, 
+         method = "color", 
+         shade.col = NA, 
+         tl.col = "gray40", 
+         tl.srt = 45, 
+         addCoef.col = "gray20", 
+         cl.pos = "n", 
+         order = "hclust",
+         col = colorRampPalette(c("red", "white", "deepskyblue4"))(100))
+
+```
+
+## Question (b)
+
+#### Assume that maternal smoking is randomly assigned conditional on the observable covariates listed above. Estimate the effect of maternal smoking on birth weight using an OLS regression with linear controls for the covariates. Report the estimated coefficient on tobacco and its standard error.
+
+```{r}
+# Question (b)
+# Fit the linear regression model with all the variables
+all <- lm(data = smoke, birthwgt ~ .)
+
+# Create a pretty table of the results
+x <- starprep(all, 
+             stat = c("std.error"), 
+             se_type = "HC1", 
+             alpha = 0.05)
+
+stargazer(all, 
+           se = x, 
+           type="text")
+
+```
+
+As you can see in the table above the tobacco impact in birth weight has
+moved from 244.5 to 228.073. This means that tobacco is not the only
+variable that is affecting a possible decrease in weight for newborns.
+There are other factors and variables affecting the weight birth of
+infants.
+
+Additionally thanks to the stargazer function we can see the
+heteroskedasticity error for tobacco is 4.277. Meaning that the related
+difference of 228.073 grams that smoker mothers have on their child
+birth weight will have a has a standard error of 4.277 grams on average.
+In other words, the heteroskedasticity will have a 4.277 grams of
+possible error in this estimation.
+
+(c) Use the exact matching estimator to estimate the effect of maternal
+    smoking on birth weight. For simplicity, consider the following
+    covariates in your matching estimator: create a 0-1 indicator for
+    mother's age (= 1 if mage\> = 34), and a 0-1 indicator for mother's
+    education (1 if meduc\> = 16), mother's race (mblack), and alcohol
+    consumption indicator (alcohol). These 4 covariates will create 2 \*
+    2 *\** 2 \* 2 = 16 cells.
+
+```{r}
+# Question (c)
+#Create the new column with the code
+smoke_new <- smoke |> 
+  mutate(mage = case_when(mage > 34 ~ 1,
+                          TRUE ~ 0)) |> 
+  mutate(meduc = case_when(meduc > 16 ~ 1,
+                           TRUE ~0)) |> 
+  mutate(code = as.factor(paste0(mage, meduc, mblack,alcohol)))
+
+class(smoke_new$code)
+
+
+# MULTIVARIATE MATCHING AS REGRESSION ESTIMATOR
+reg_ate <- lm(data = smoke_new, birthwgt ~ tobacco + code)
+
+se_models = starprep(reg_ate, stat = c("std.error"), se_type = "HC2", alpha = 0.05)
+stargazer(reg_ate, se = se_models, type="text")
+
+
+ggplot(smoke_new, aes(x=code, y = birthwgt, fill = code)) + 
+  geom_boxplot(alpha = 0.5) +
+  labs(x = "Covariets",
+       y = "Birth Weight (g)",
+       title = "")
+
+
+```
+
+Report the estimated average treatment effect of smoking on birthweight
+using the exact matching estimator and its linear regression analogue.

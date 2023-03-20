@@ -1,0 +1,274 @@
+---
+title: "EDS241: Assignment 2"
+author: "Guillermo Romero"
+format: pdf
+---
+
+## Question 1:
+
+Application of estimators based on the "treatment ignorability" assumption. The goal is to estimate the causal effect of maternal smoking during pregnancy on infant birth weight using the treatment ignorability assumptions (Lecture 6 & 7).
+
+The data are taken from the National Natality Detail Files, and the extract "SMOKING_EDS241.csv"' is a random sample of all births in Pennsylvania during 1989-1991. Each observation is a mother-infant pair. The key variables are:
+
+The outcome and treatment variables are:
+
+-   birthwgt = birth weight of infant in grams
+
+-   tobacco = indicator for maternal smoking
+
+The control variables are: mage (mother's age), meduc (mother's education), mblack (=1 if mother black), alcohol (=1 if consumed alcohol during pregnancy), first (=1 if first child), diabete (=1 if mother diabetic), anemia (=1 if mother anemic)
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(stargazer)
+library(estimatr)
+library(corrplot)
+library(tidymodels)
+library(patchwork)
+
+```
+
+```{r}
+#| include: false
+
+
+df_smoking <- read_csv(here::here("SMOKING_EDS241.csv"))
+```
+
+What is the unadjusted mean difference in birth weight of infants with smoking and nonsmoking mothers?
+
+```{r}
+#| warning: false
+
+mean_weight_smk_nsmk <- df_smoking |> 
+  group_by(tobacco) |> 
+  summarise(mean_weight = mean(birthwgt))
+
+round(mean_weight_smk_nsmk$mean_weight[1] - mean_weight_smk_nsmk$mean_weight[2],2 )
+```
+
+**The unadjusted mean difference in birth weight of infants with smoking and nonsmoking mothers is 244.54.**
+
+[Under what assumption does this correspond to the average treatment effect of maternal smoking during pregnancy on infant birth weight? Provide some simple empirical evidence for or against this assumption.]{.smallcaps}
+
+**This corresponds to the assumption of "treatment ignorability" conditional on pre treatment characteristics Xi (Rubin and Rosenbaum). There is evidence against this assumption as the distribution in the following boxplot is not balanced. Also, except for the control variable of the mother being diabetic, the F-statistic are large and the associated p-value is small, it suggests that the predictor variables in the model are jointly significant in explaining the variation in the outcome variable.**
+
+```{r}
+#| include: false
+
+bw <- df_smoking |>
+  mutate(tobacco = case_when(tobacco == 0 ~ "Non Smoker",
+                             tobacco == 1 ~ "Smoker")) |>
+  ggplot(aes(
+    x = as.factor(tobacco),
+    y = birthwgt,
+    fill = tobacco
+  )) +
+  geom_boxplot(alpha = 0.7) +
+  labs(x = "Tobacco",
+       y = "Birthweight") +
+  theme_bw()
+
+
+meduc <- df_smoking |>
+  mutate(tobacco = case_when(tobacco == 0 ~ "Non Smoker",
+                             tobacco == 1 ~ "Smoker")) |>
+  ggplot(aes(
+    x = as.factor(tobacco),
+    y = meduc,
+    fill = tobacco
+  )) +
+  geom_boxplot(alpha = 0.7) +
+  labs(x = "Tobacco",
+       y = "Mother's
+Education") +
+  theme_bw()
+
+mage <- df_smoking |>
+  mutate(tobacco = case_when(tobacco == 0 ~ "Non Smoker",
+                             tobacco == 1 ~ "Smoker")) |>
+  ggplot(aes(
+    x = as.factor(tobacco),
+    y = mage,
+    fill = tobacco
+  )) +
+  geom_boxplot(alpha = 0.7) +
+  labs(x = "Tobacco",
+       y = "Mother's
+Age") +
+  theme_bw()
+
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 8
+#| warning: false
+
+
+bw + meduc + mage + plot_layout(nrow = 2, byrow = TRUE)
+
+```
+
+```{r}
+#| warning: false
+
+
+# EXAMINE BALANCE IN COVARIATES
+# COVARIATE MEAN DIFFERENCES by tobacco
+m1 <- lm(formula = birthwgt ~ tobacco, data = df_smoking)
+m2 <- lm(formula = mblack ~ tobacco, data = df_smoking)
+m3 <- lm(formula = alcohol ~ tobacco, data = df_smoking)
+m4 <- lm(formula = first ~ tobacco, data = df_smoking)
+m5 <- lm(formula = diabete ~ tobacco, data = df_smoking)
+m6 <- lm(formula = anemia ~ tobacco, data = df_smoking)
+m7 <- lm(formula = mage ~ tobacco, data = df_smoking)
+m8 <- lm(formula = meduc ~ tobacco , data = df_smoking)
+
+
+se_models = starprep(
+  m1,
+  m2,
+  m3,
+  m4,
+  m5,
+  m6,
+  m7,
+  m8,
+  stat = c("std.error"),
+  se_type = "HC2",
+  alpha = 0.05
+)
+
+
+
+```
+
+```{r results='asis'}
+#| warning: false
+
+stargazer(
+  m1,
+  m2,
+  m3,
+  m4,
+  m5,
+  m6,
+  m7,
+  m8,
+  se = se_models,
+  type = "latex",
+  font.size = 'small',
+  summary = FALSE,
+  digits = 2,
+  column.sep.width = '-8pt',
+  no.space = TRUE
+)
+```
+
+## Question (b)
+
+Assume that maternal smoking is randomly assigned conditional on the observable covariates listed above. Estimate the effect of maternal smoking on birth weight using an OLS regression with linear controls for the covariates. Report the estimated coefficient on tobacco and its standard error.
+
+```{r}
+#| warning: false
+
+
+mod <-
+  lm(
+    formula = birthwgt ~ tobacco + as.factor(anemia) + as.factor(diabete) + as.factor(alcohol) +
+      as.factor(mblack) + as.factor(first) + mage + meduc + birthwgt,
+    data = df_smoking
+  )
+
+se_models = starprep(mod , stat = c("std.error"), se_type = "HC1", alpha = 0.05)
+
+stargazer(mod, se = se_models, type="text", omit = "(LME)|(genus)|(species)")
+
+```
+
+**The estimated coefficient on tobacco is -228.073 and the standar error is 4.277.**
+
+(c) Use the exact matching estimator to estimate the effect of maternal smoking on birth weight. For simplicity, consider the following covariates in your matching estimator: create a 0-1 indicator for mother's age (= 1 if mage\> = 34), and a 0-1 indicator for mother's education (1 if meduc\> = 16), mother's race (mblack), and alcohol consumption indicator (alcohol). These 4 covariates will create 2 \* 2 *\** 2 \* 2 = 16 cells. Report the estimated average treatment effect of smoking on birthweight using the exact matching estimator and its linear regression analogue.
+
+```{r}
+#| warning: false
+
+
+df_matching <- df_smoking |> 
+  mutate(mage_i = case_when(mage >= 34 ~ 1,
+                          TRUE ~ 0)) |> 
+  mutate(meduc_i = case_when(meduc >= 16 ~ 1,
+                           TRUE ~0)) |> 
+  select(birthwgt,tobacco, alcohol, mblack, mage_i, meduc_i)
+
+df_matching
+```
+
+```{r}
+#| warning: false
+
+
+linear_est <-
+  lm(formula = birthwgt ~ tobacco + alcohol + mblack + mage_i  + meduc_i,
+     data = df_matching)
+
+se_models = starprep(
+  linear_est,
+  stat = c("std.error"),
+  se_type = "HC2",
+  alpha = 0.05
+)
+
+stargazer(linear_est, se = se_models, type = "text")
+
+```
+
+```{r}
+#| warning: false
+
+
+
+TIA_table <- df_smoking %>%
+  mutate(
+    mage_indicator = case_when(mage >= 34 ~ 1,
+                               mage < 34 ~ 0),
+    meduc_indicator = case_when(meduc >= 16 ~ 1,
+                                meduc < 16 ~ 0)
+  ) %>% #Create observed Y variable
+  mutate(factors = as.factor(paste0(
+    mblack, alcohol, mage_indicator, meduc_indicator
+  ))) %>%
+  group_by(factors, tobacco) %>%
+  summarise(n_obs = n(),
+            Y_mean = mean(birthwgt, na.rm = T)) %>% #Calculate number of observations and Y mean by X by treatment cells
+  gather(variables, values, n_obs:Y_mean) %>% #Reshape data
+  mutate(variables = paste0(variables, "_", tobacco, sep = "")) %>% #Combine the treatment and variables for reshaping
+  pivot_wider(id_cols = factors,
+              names_from = variables,
+              values_from = values) %>% #Reshape data by treatment and X cell
+  ungroup() %>%  #Ungroup from X values
+  mutate(
+    Y_diff = Y_mean_1 - Y_mean_0,
+    #calculate Y_diff
+    w_ATE = (n_obs_0 + n_obs_1) / (sum(n_obs_0) + sum(n_obs_1)),
+    w_ATT = n_obs_1 / sum(n_obs_1)
+  ) %>% #calculate weights
+  mutate_if(is.numeric, round, 2) #Round data
+
+stargazer(TIA_table,
+          type = "text",
+          summary = FALSE,
+          digits = 2)
+
+TIA_table
+#MULTIVARIATE MATCHING ESTIMATES OF ATE AND ATT
+ATE = sum((TIA_table$w_ATE) * (TIA_table$Y_diff))
+ATE
+ATT = sum((TIA_table$w_ATT) * (TIA_table$Y_diff))
+ATT
+```
+
+ATE of exact matching estimator is -224.2583 and its linear regression analogue is -226.769.
