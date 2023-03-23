@@ -1,0 +1,1022 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{fontspec}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{hhline}
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{wrapfig}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={EDS241: Take-Home Final Exam},
+  pdfauthor={Guillermo Romero},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{EDS241: Take-Home Final Exam}
+\author{Guillermo Romero}
+\date{3/22/23}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, interior hidden, frame hidden, breakable, enhanced, sharp corners]}{\end{tcolorbox}}\fi
+
+The questions for this take-home final exam asks you to examine the
+impact of the opening of a garbage incinerator on housing values in
+North Andover, MA. The data for the exercise are a subset of the data in
+the paper: K.A. Kiel and K.T. McClain (1995): ``House Prices During
+Siting Decision Stages: The Case of an Incinerator from Rumor Through
+Operation,'' Journal of Environmental Economics and Management 28,
+241-255.
+
+\textbf{Background:} The construction of a new garbage incinerator in
+North Andover in the early 1980s was controversial due to the increases
+in ambient pollution that it would create. Rumors of the incinerator
+began after 1978. The construction started in 1981, and the incinerator
+began operating in 1985. In Economics, land market theory suggests that
+local amenities are capitalized in housing values, and predicts that the
+prices of houses located near the incinerator would fall compared to the
+price of houses located further away from the incinerator. By 1981, you
+can assume that all market participants had full information on the
+upcoming garbage incinerator, so that housing values had capitalized the
+upcoming arrival of the incinerator.
+
+\textbf{Data:} The authors of the paper collected data on prices of
+houses that sold in 1978 (before the upcoming construction of the
+incinerator was public knowledge) and in 1981 (after the construction
+had started). The key variables for the analysis are:
+
+\begin{itemize}
+\item
+  \textbf{rprice} (inflation-adjusted sales price of house),
+\item
+  \textbf{nearinc} (=1 if house located near the incinerator, =0
+  otherwise),
+\item
+  \textbf{age} (age of the house),
+\item
+  \textbf{land} (square footage of the lot),
+\item
+  \textbf{area} (square footage of the house),
+\item
+  \textbf{rooms} (number of rooms in the house), and a
+\item
+  \textbf{year} indicator (1978 or 1981).
+\end{itemize}
+
+These variables are contained in the CSV file \texttt{KM\_EDS241.csv.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{km\_data }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"KM\_EDS241.csv"}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skim }\OtherTok{\textless{}{-}}\NormalTok{ skimr}\SpecialCharTok{::}\FunctionTok{skim}\NormalTok{(km\_data)}
+\FunctionTok{theme\_vanilla}\NormalTok{(}\FunctionTok{flextable}\NormalTok{(skim))}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-12}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{skim\_type}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{skim\_variable}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{n\_missing}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{complete\_rate}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.mean}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.sd}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.p0}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.p25}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.p50}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.p75}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.p100}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textbf{numeric.hist}}}} \\
+
+\ascline{1.5pt}{666666}{1-12}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{year}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,979.3271028}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1.4923285}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,978}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,978}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,978}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,981.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,981}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▇▁▁▁▆}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{age}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{18.0093458}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{32.5658454}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{4}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{22.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{189}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▇▁▁▁▁}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{rooms}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{6.5856698}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.9012042}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{4}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{6}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{7}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{7.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{10}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▂▅▇▁▁}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{area}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2,106.7289720}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{694.9579021}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{735}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,560}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2,056}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2,544.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{5,136}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▅▇▅▁▁}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{land}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{39,629.8909657}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{39,514.3902407}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1,710}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{16,935}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{43,560}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{46,100.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{544,500}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▇▁▁▁▁}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{nearinc}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.2990654}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.4585634}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1.0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▇▁▁▁▃}}} \\
+
+\ascline{0.75pt}{666666}{1-12}
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{numeric}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{rprice}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{1}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{83,721.3554829}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{33,118.7857706}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{26,000}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{59,000}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{82,000}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{100,230.4}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{300,000}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{▇▇▁▁▁}}} \\
+
+\ascline{1.5pt}{666666}{1-12}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\hypertarget{a}{%
+\section{(A)}\label{a}}
+
+Using the data for 1981, estimate a simple OLS regression of house
+values on the \textbf{indicator} for being located near the incinerator
+in 1981.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Using the data for 1981}
+\NormalTok{year81 }\OtherTok{\textless{}{-}}\NormalTok{ km\_data }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(year }\SpecialCharTok{==} \DecValTok{1981}\NormalTok{)}
+
+\CommentTok{\# estimate a simple OLS regression of house values on the indicator for being located near the incinerator in 1981}
+\NormalTok{ols\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ rprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc, }\AttributeTok{data =}\NormalTok{ year81)}
+
+\NormalTok{ols\_reg\_prep }\OtherTok{\textless{}{-}} \FunctionTok{starprep}\NormalTok{(}
+\NormalTok{  ols\_reg,}
+  \AttributeTok{stat =} \FunctionTok{c}\NormalTok{(}\StringTok{"std.error"}\NormalTok{),}
+  \AttributeTok{se\_type =} \StringTok{"HC2"}\NormalTok{,}
+  \AttributeTok{alpha =} \FloatTok{0.5}
+\NormalTok{)}
+
+\FunctionTok{stargazer}\NormalTok{(}
+\NormalTok{  ols\_reg,}
+  \AttributeTok{se =}\NormalTok{ ols\_reg\_prep,}
+  \AttributeTok{type =} \StringTok{"text"}\NormalTok{,}
+  \AttributeTok{summary =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{digits =} \DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                              rprice           
+-----------------------------------------------
+nearinc                    -30,688.27***       
+                            (6,243.17)         
+                                               
+Constant                   101,307.50***       
+                            (2,944.81)         
+                                               
+-----------------------------------------------
+Observations                    142            
+R2                             0.17            
+Adjusted R2                    0.16            
+Residual Std. Error    31,238.04 (df = 140)    
+F Statistic           27.73*** (df = 1; 140)   
+===============================================
+Note:               *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+\begin{quote}
+What is the house value ``penalty'' for houses located near the
+incinerator?
+\end{quote}
+
+\textbf{The house value ``penalty'' for houses located near the
+incinerator is-30, 688.}
+
+\begin{quote}
+Does this estimated coefficient correspond to the `causal' effect of the
+incinerator (and the negative amenities that come with it) on housing
+values? Explain why or why not
+\end{quote}
+
+\textbf{The estimated coefficient of \texttt{nearinc} implies a
+``casual'' effect of the incinerator on nearby housing values, as we
+anticipate a negative impact on properties in close proximity. This is
+reflected by the house value ``penalty'' of -\$30,688.27 for houses
+located near the incinerator. However, this effect might be overstated
+due to potential omitted variables bias, and further analysis is
+required to determine whether the incinerator alone is responsible for
+the decrease in housing values or if other factors are at play}.
+
+\hypertarget{b}{%
+\section{(B)}\label{b}}
+
+Using the data for 1978, provide some evidence the location choice of
+the incinerator was not ``random'' using the data on house values and
+characteristics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{year78 }\OtherTok{\textless{}{-}}\NormalTok{ km\_data }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(year }\SpecialCharTok{==} \DecValTok{1978}\NormalTok{) }
+
+\CommentTok{\#  means of house values and characteristics }
+\NormalTok{house\_charc\_means }\OtherTok{\textless{}{-}}\NormalTok{ year78 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(nearinc) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{rprice\_mean =} \FunctionTok{mean}\NormalTok{(rprice),}
+            \AttributeTok{age\_mean =} \FunctionTok{mean}\NormalTok{(age),}
+            \AttributeTok{land\_mean =} \FunctionTok{mean}\NormalTok{(land),}
+            \AttributeTok{area\_mean =} \FunctionTok{mean}\NormalTok{(area),}
+            \AttributeTok{room\_man =} \FunctionTok{mean}\NormalTok{(rooms))}
+
+\CommentTok{\# mean difference }
+\NormalTok{mean\_differene }\OtherTok{\textless{}{-}}\NormalTok{ house\_charc\_means[}\DecValTok{1}\NormalTok{,}\StringTok{"rprice\_mean"}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ house\_charc\_means[}\DecValTok{2}\NormalTok{,}\StringTok{"rprice\_mean"}\NormalTok{]}
+\FunctionTok{flextable}\NormalTok{(mean\_differene)}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-1}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{rprice\_mean}}} \\
+
+\ascline{1.5pt}{666666}{1-1}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{18,824.37}}} \\
+
+\ascline{1.5pt}{666666}{1-1}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# linear models on  nearinc and house characteristics }
+
+
+\NormalTok{age\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(age }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc, }\AttributeTok{data =}\NormalTok{ year78)}
+
+\NormalTok{area\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(area }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc,}\AttributeTok{data =}\NormalTok{ year78)}
+
+\NormalTok{room\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(rooms }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc,}\AttributeTok{data =}\NormalTok{ year78)}
+
+\FunctionTok{as\_flextable}\NormalTok{(age\_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.98in}|p{0.88in}|p{1.29in}|p{0.75in}|p{0.75in}|p{0.40in}}
+
+
+
+\ascline{1.5pt}{666666}{1-6}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Estimate}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Standard\ Error}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{t\ value}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Pr(>|t|)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+\ascline{1.5pt}{666666}{1-6}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{(Intercept)}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{12.748}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{3.224}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{3.954}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0001}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{nearinc}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{27.038}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{5.764}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{4.691}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0000}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{***}}} \\
+
+\ascline{1.5pt}{666666}{1-6}
+
+
+
+\multicolumn{6}{>{\raggedleft}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textit{Signif.\ codes:\ 0\ <=\ '***'\ <\ 0.001\ <\ '**'\ <\ 0.01\ <\ '*'\ <\ 0.05}}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Residual\ standard\ error:\ 35.76\ on\ 177\ degrees\ of\ freedom}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Multiple\ R-squared:\ 0.1106,\ Adjusted\ R-squared:\ 0.1055}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{F-statistic:\ 22\ on\ 177\ and\ 1\ DF,\ p-value:\ 0.0000}}} \\
+
+
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{as\_flextable}\NormalTok{(area\_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.98in}|p{0.96in}|p{1.29in}|p{0.75in}|p{0.75in}|p{0.40in}}
+
+
+
+\ascline{1.5pt}{666666}{1-6}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Estimate}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Standard\ Error}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{t\ value}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Pr(>|t|)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+\ascline{1.5pt}{666666}{1-6}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{(Intercept)}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{2,074.756}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{56.524}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{36.706}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0000}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{nearinc}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{-240.113}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{101.057}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{-2.376}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0186}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\ \ *}}} \\
+
+\ascline{1.5pt}{666666}{1-6}
+
+
+
+\multicolumn{6}{>{\raggedleft}m{\dimexpr 5.14in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textit{Signif.\ codes:\ 0\ <=\ '***'\ <\ 0.001\ <\ '**'\ <\ 0.01\ <\ '*'\ <\ 0.05}}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.14in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.14in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Residual\ standard\ error:\ 626.9\ on\ 177\ degrees\ of\ freedom}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.14in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Multiple\ R-squared:\ 0.03091,\ Adjusted\ R-squared:\ 0.02543}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.14in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{F-statistic:\ 5.646\ on\ 177\ and\ 1\ DF,\ p-value:\ 0.0186}}} \\
+
+
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{as\_flextable}\NormalTok{(room\_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{0pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.98in}|p{0.88in}|p{1.29in}|p{0.75in}|p{0.75in}|p{0.40in}}
+
+
+
+\ascline{1.5pt}{666666}{1-6}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Estimate}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Standard\ Error}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{t\ value}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Pr(>|t|)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+\ascline{1.5pt}{666666}{1-6}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{(Intercept)}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{6.829}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.080}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{85.363}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0000}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.98in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{nearinc}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.88in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{-0.794}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.29in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.143}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{-5.548}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{0.0000}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{***}}} \\
+
+\ascline{1.5pt}{666666}{1-6}
+
+
+
+\multicolumn{6}{>{\raggedleft}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\textit{Signif.\ codes:\ 0\ <=\ '***'\ <\ 0.001\ <\ '**'\ <\ 0.01\ <\ '*'\ <\ 0.05}}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Residual\ standard\ error:\ 0.8873\ on\ 177\ degrees\ of\ freedom}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{Multiple\ R-squared:\ 0.1481,\ Adjusted\ R-squared:\ 0.1433}}} \\
+
+
+
+
+
+\multicolumn{6}{>{\raggedright}m{\dimexpr 5.05in+10\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{F-statistic:\ 30.78\ on\ 177\ and\ 1\ DF,\ p-value:\ 0.0000}}} \\
+
+
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\textbf{The placement of the incinerator appears to be non-random, as
+evidenced by the significant differences in house prices and
+characteristics between houses near the incinerator and those farther
+away. The average house price difference is \$18,824.37, suggesting a
+deliberate choice in incinerator location. Furthermore, houses near the
+incinerator tend to be 27.04 years older, have 240.1 less square
+footage, and 0.79 fewer rooms compared to those not in proximity to the
+incinerator. These findings, along with the statistically significant
+coefficients in the models, imply a correlation between incinerator
+proximity and certain house values and characteristics. This strengthens
+the assumption of potential omitted variable bias, as other factors may
+be influencing house prices in addition to the incinerator's presence.}
+
+\hypertarget{c}{%
+\section{(C)}\label{c}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\item
+  \begin{quote}
+  Based on the observed differences in (b), explain why the estimate in
+  (a) is likely to be biased downward (i.e., overstate the negative
+  effect of the incinerator on housing values).
+  \end{quote}
+
+  \textbf{The estimate in (a) is likely biased downward, overstating the
+  negative effect of the incinerator on housing values, because Based on
+  the observed differences in (b),} \textbf{houses near the incinerator
+  are older, smaller, and have fewer rooms, resulting in lower values
+  regardless of the incinerator's presence.}
+\end{enumerate}
+
+\hypertarget{d}{%
+\section{(D)}\label{d}}
+
+\begin{quote}
+Use a difference-in-differences (DD) estimator to estimate the causal
+effect of the incinerator on housing values without controlling for
+house and lot characteristics.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DD REGRESSION, Y = Wind+Solar installed capacity (MW), using lm package}
+
+\NormalTok{DD }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ rprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc}
+         \SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(year),}
+         \AttributeTok{data =}\NormalTok{ km\_data)}
+
+\NormalTok{se\_DD }\OtherTok{\textless{}{-}} \FunctionTok{starprep}\NormalTok{(DD,}
+                  \AttributeTok{stat =} \FunctionTok{c}\NormalTok{(}\StringTok{"std.error"}\NormalTok{),}
+                  \AttributeTok{se\_type =} \StringTok{"HC2"}\NormalTok{,}
+                  \AttributeTok{alpha =} \FloatTok{0.05}\NormalTok{)}
+
+\FunctionTok{stargazer}\NormalTok{(DD,}
+          \AttributeTok{se =}\NormalTok{ se\_DD,}
+          \AttributeTok{type =} \StringTok{"text"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                              rprice           
+-----------------------------------------------
+nearinc                   -23,896.000***       
+                            (4,363.427)        
+                                               
+as.factor(year)1981        15,290.320***       
+                            (3,403.823)        
+                                               
+Constant                   84,103.880***       
+                            (1,986.559)        
+                                               
+-----------------------------------------------
+Observations                    321            
+R2                             0.167           
+Adjusted R2                    0.162           
+Residual Std. Error    30,315.630 (df = 318)   
+F Statistic           31.957*** (df = 2; 318)  
+===============================================
+Note:               *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+\begin{quote}
+Interpret the magnitude and sign of the estimated DD coefficient.
+\end{quote}
+
+\textbf{Utilizing a difference-in-differences (DD) estimator to assess
+the causal impact of the incinerator on housing values without
+considering house and lot characteristics, we derived an estimated DD
+coefficient of -23,896, which is statistically significant at a p-value
+of \textless0.01. This negative coefficient signifies that the average
+value of houses near the incinerator has decreased by \$23,896. The
+negative sign indicates a decrease in housing prices, with the magnitude
+of the change being substantial for houses in close proximity to the
+incinerator, while keeping time constant. In summary, the average value
+of houses near the incinerator experiences a decrease in value due to
+the incinerator's presence.}
+
+\hypertarget{e}{%
+\section{(E)}\label{e}}
+
+\begin{quote}
+Report the 95\% confidence interval for the estimate of the causal
+effect on the incinerator in (d).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint}\NormalTok{(DD, }\AttributeTok{level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                        2.5 %    97.5 %
+(Intercept)          79098.43  89109.33
+nearinc             -31171.19 -16620.80
+as.factor(year)1981   8583.74  21996.89
+\end{verbatim}
+
+\textbf{The 95\% confidence interval for the estimate of the causal
+effect on the incinerator is {[}-31,171.19, -16620.80{]}.}
+
+\hypertarget{f}{%
+\section{(F)}\label{f}}
+
+\begin{quote}
+How does your answer in (d) changes when you control for house and lot
+characteristics?
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DD regression, control for house and lot characteristics}
+\NormalTok{DD\_2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ rprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nearinc}
+           \SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(year)}
+           \SpecialCharTok{+}\NormalTok{ age}
+           \SpecialCharTok{+}\NormalTok{ rooms}
+           \SpecialCharTok{+}\NormalTok{ area}
+           \SpecialCharTok{+}\NormalTok{ land,}
+           \AttributeTok{data =}\NormalTok{ km\_data)}
+\NormalTok{se\_DD\_2 }\OtherTok{\textless{}{-}} \FunctionTok{starprep}\NormalTok{(}
+\NormalTok{  DD\_2,}
+  \AttributeTok{stat =} \FunctionTok{c}\NormalTok{(}\StringTok{"std.error"}\NormalTok{),}
+  \AttributeTok{se\_type =} \StringTok{"HC2"}\NormalTok{,}
+  \AttributeTok{alpha =} \FloatTok{0.05}
+\NormalTok{)}
+\FunctionTok{stargazer}\NormalTok{(DD\_2,}
+          \AttributeTok{se =}\NormalTok{ se\_DD\_2,}
+          \AttributeTok{type =} \StringTok{"text"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+===============================================
+                        Dependent variable:    
+                    ---------------------------
+                              rprice           
+-----------------------------------------------
+nearinc                     -2,604.816         
+                            (5,819.305)        
+                                               
+as.factor(year)1981        9,019.277***        
+                            (2,291.266)        
+                                               
+age                         -260.659***        
+                             (50.524)          
+                                               
+rooms                      6,593.785***        
+                            (1,547.520)        
+                                               
+area                         24.293***         
+                              (3.993)          
+                                               
+land                           0.120           
+                              (0.135)          
+                                               
+Constant                    -14,144.360        
+                           (10,765.290)        
+                                               
+-----------------------------------------------
+Observations                    321            
+R2                             0.604           
+Adjusted R2                    0.596           
+Residual Std. Error    21,041.930 (df = 314)   
+F Statistic           79.789*** (df = 6; 314)  
+===============================================
+Note:               *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+\textbf{When controlling for house and lot characteristics the
+\texttt{nearinc} variable lost its statistical significance when
+compared to the previous findings in question (d). This suggests that
+the effect of living near an incinerator on housing prices was
+overestimated in the initial analysis. As a result, we can conclude that
+the proximity to an incinerator has a lesser impact on housing prices
+relative to other factors, such as age, number of rooms, house square
+footage (area), and land, which are now included in the analysis. This
+new, reduced coefficient for \texttt{nearinc} is no longer statistically
+significant, indicating that being close to an incinerator may not be as
+influential on housing prices as the other variables considered.}
+
+\begin{quote}
+Test the hypothesis that the coefficients on the house and lot
+characteristics are all jointly equal to 0.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#run linear hypothesis test, set all coefficients = 0}
+\FunctionTok{linearHypothesis}\NormalTok{(DD\_2,}
+                 \FunctionTok{c}\NormalTok{(}\StringTok{"age = 0"}\NormalTok{,}
+                   \StringTok{"area = 0"}\NormalTok{,}
+                   \StringTok{"rooms = 0"}\NormalTok{,}
+                   \StringTok{"land = 0"}\NormalTok{),}
+                 \AttributeTok{white.adjust =} \StringTok{"hc2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Linear hypothesis test
+
+Hypothesis:
+age = 0
+area = 0
+rooms = 0
+land = 0
+
+Model 1: restricted model
+Model 2: rprice ~ nearinc + as.factor(year) + age + rooms + area + land
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F                Pr(>F)    
+1    318                                    
+2    314  4 33.674 < 0.00000000000000022 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\textbf{With a p-value of 0.00000000000000022 we can reject the null
+hypothesis that the coefficients on the house and lot characteristics
+are all jointly equal to 0.}
+
+\hypertarget{g}{%
+\section{(G)}\label{g}}
+
+\begin{quote}
+Explain (in words) what is the key assumption underlying the causal
+interpretation of the DD estimator in the context of the incinerator
+construction in North Andover
+\end{quote}
+
+\textbf{The key assumption underlying the causal interpretation of the
+DD estimator in the context of the incinerator construction in North
+Andover is the parallel trend assumption. This assumption posits that
+homes not located near an incinerator serve as a valid counterfactual
+for the temporal evolution of mean price changes in homes that are near
+an incinerator, in the absence of any changes in proximity to the
+incinerator. In other words, the assumption implies that the average
+price change for homes near an incinerator, without any changes in
+distance to the incinerator, can be estimated using the homes that are
+not near the incinerator as a suitable comparison.}
+
+
+
+\end{document}
